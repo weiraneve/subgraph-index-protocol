@@ -5,7 +5,7 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: juniorTranche
+    name: juniorDepositRecords
     network: celo
     source:
       address: "0xaB5Ee8465c8C8d51e2cCc7d52AC53c19AF201Fa4"
@@ -27,7 +27,7 @@ dataSources:
       file: ./src/mappings/deposited.ts
 
   - kind: ethereum
-    name: seniorTranche
+    name: seniorDepositRecords
     network: celo
     source:
       address: "0xc21a5485021C904Ed00b22BF774435a5B33c69bc"
