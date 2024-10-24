@@ -157,6 +157,7 @@ Or
     borrower
     amount
     timestamp
+    lateFeePaid
   }
 }
 ```
@@ -171,6 +172,7 @@ Or
     borrower
     amount
     timestamp
+    lateFeePaid
   }
 }
 ```
