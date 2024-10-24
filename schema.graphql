@@ -29,7 +29,6 @@ type Drawdown @entity {
   id: ID!
   borrower: Bytes!
   amount: BigInt!
-  shares: BigInt!
   timestamp: BigInt!
   blockNumber: BigInt!
   transactionHash: Bytes!
