@@ -128,3 +128,60 @@ Or
   }
 }
 ```
+
+## Index PrincipalPaymentMade event
+
+### principal payment records
+
+#### each record includes borrower address, amount, lateFeePaid and timestamp
+``` graphql
+{
+  principalPayments {
+    borrower
+    amount
+    timestamp
+    lateFeePaid
+  }
+}
+```
+
+#### filter by timestamp
+``` graphql
+{
+  principalPayments(
+    where: {
+      timestamp_gte: "1704038400"  # 2024-01-01
+      timestamp_lte: "1727712000"  # 2024-10-01
+    }
+  ) {
+    borrower
+    amount
+    timestamp
+  }
+}
+```
+
+#### order by timestamp
+``` graphql
+{
+  principalPayments(
+    orderBy: timestamp
+    orderDirection: desc
+  ) {
+    borrower
+    amount
+    timestamp
+  }
+}
+```
+
+### total number of amount
+``` graphql
+{
+  totalPrincipalPayments {
+    id
+    totalAmount
+  }
+}
+```
+
