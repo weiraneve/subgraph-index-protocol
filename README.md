@@ -1,7 +1,6 @@
 # subgraph-index-protocol
 
-
-## usecase
+## Index LiquidityDeposited event
 
 ### deposit records
 
