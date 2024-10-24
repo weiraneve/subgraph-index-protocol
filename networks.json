@@ -7,6 +7,10 @@
     "seniorDeposited": {
       "address": "0xc21a5485021C904Ed00b22BF774435a5B33c69bc",
       "startBlock": 24782120
+    },
+    "drawdown": {
+      "address": "0x39EaCecFAE2A174Dacd10D10BBD09a6DD2541C18",
+      "startBlock": 24782120
     }
   }
 }
