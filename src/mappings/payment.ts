@@ -3,7 +3,8 @@ import {
     PrincipalPaymentMade as PrincipalPaymentMadeEvent
 } from "../../generated/payment/payment"
 import { PrincipalPayment, TotalPrincipalPayment } from "../../generated/schema"
-import { TOTAL_PAYMENT_AMOUNT } from '../utils/constants'
+
+const TOTAL_PAYMENT_AMOUNT = "total payment amount"
 
 const SECONDS_PER_DAY = BigInt.fromI32(86400)
 const DAILY_PENALTY_PERCENTAGE = BigInt.fromI32(1)

@@ -6,7 +6,9 @@ import {
   Deposit,
   TotalDeposit
 } from "../../generated/schema"
-import { JUNIOR_TRANCHE, SENIOR_TRANCHE } from '../utils/constants'
+
+const JUNIOR_TRANCHE = "junior"
+const SENIOR_TRANCHE = "senior"
 
 export function handleJuniorLiquidityDeposited(event: LiquidityDepositedEvent): void {
   handleLiquidityDeposited(event, JUNIOR_TRANCHE)

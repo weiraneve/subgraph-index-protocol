@@ -3,7 +3,8 @@ import {
     DrawdownMade as DrawdownMadeEvent
 } from "../../generated/drawdown/drawdown"
 import { Drawdown, TotalDrawdown } from "../../generated/schema"
-import { TOTAL_DRAWDOWN_AMOUNT } from '../utils/constants'
+
+const TOTAL_DRAWDOWN_AMOUNT = "total drawdown amount"
 
 export function handleIndexDrawdownMade(event: DrawdownMadeEvent): void {
     const drawdownId = generateDrawdownId(event)
