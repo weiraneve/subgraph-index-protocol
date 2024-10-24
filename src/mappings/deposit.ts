@@ -1,7 +1,7 @@
 import { BigInt } from "@graphprotocol/graph-ts"
 import {
   LiquidityDeposited as LiquidityDepositedEvent,
-} from "../../generated/juniorDepositRecords/deposited"
+} from "../../generated/juniorDepositRecords/deposit"
 import {
   Deposit,
   TotalDeposit
