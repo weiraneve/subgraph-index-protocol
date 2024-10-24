@@ -53,6 +53,7 @@ type PrincipalPayment @entity {
   id: ID!
   borrower: Bytes!
   amount: BigInt!
+  lateFeePaid: BigInt!
   timestamp: BigInt!
   blockNumber: BigInt!
   transactionHash: Bytes!

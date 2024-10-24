@@ -5,6 +5,9 @@ import {
 import { PrincipalPayment, TotalPrincipalPayment } from "../../generated/schema"
 import { TOTAL_PAYMENT_AMOUNT } from '../utils/constants'
 
+const SECONDS_PER_DAY = BigInt.fromI32(86400)
+const DAILY_PENALTY_PERCENTAGE = BigInt.fromI32(1)
+
 export function handleIndexPrincipalPaymentMade(event: PrincipalPaymentMadeEvent): void {
     const paymentId = generatePaymentId(event)
     let payment = PrincipalPayment.load(paymentId)
@@ -29,8 +32,32 @@ function updatePaymentEntity(payment: PrincipalPayment, event: PrincipalPaymentM
     payment.timestamp = event.block.timestamp
     payment.blockNumber = event.block.number
     payment.transactionHash = event.transaction.hash
+    payment.lateFeePaid = calculateLateFeePaid(event)
 
     return payment
+}
+
+function calculateLateFeePaid(event: PrincipalPaymentMadeEvent): BigInt {
+    let lateFeePaid = BigInt.fromI32(0)
+
+    if (event.block.timestamp.gt(event.params.nextDueDate)) {
+        let lateDays = event.block.timestamp
+            .minus(event.params.nextDueDate)
+            .plus(SECONDS_PER_DAY.minus(BigInt.fromI32(1)))
+            .div(SECONDS_PER_DAY)
+
+        let unpaidPrincipal = event.params.principalDue.minus(event.params.principalDuePaid)
+
+        if (unpaidPrincipal.gt(BigInt.fromI32(0))) {
+            // 计算方式：未支付金额 * 天数 * 日利率百分比 * 1%
+            lateFeePaid = unpaidPrincipal
+                .times(lateDays)
+                .times(DAILY_PENALTY_PERCENTAGE)
+                .div(BigInt.fromI32(100))
+        }
+    }
+
+    return lateFeePaid
 }
 
 function updateTotalPayment(event: PrincipalPaymentMadeEvent): void {
