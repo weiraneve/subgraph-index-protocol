@@ -35,6 +35,14 @@ function updatePaymentEntity(payment: PrincipalPayment, event: PrincipalPaymentM
     payment.transactionHash = event.transaction.hash
     payment.lateFeePaid = calculateLateFeePaid(event)
 
+    payment.payer = event.params.payer
+    payment.by = event.params.by
+    payment.nextDueDate = event.params.nextDueDate
+    payment.principalDue = event.params.principalDue
+    payment.unbilledPrincipal = event.params.unbilledPrincipal
+    payment.principalDuePaid = event.params.principalDuePaid
+    payment.unbilledPrincipalPaid = event.params.unbilledPrincipalPaid
+
     return payment
 }
 

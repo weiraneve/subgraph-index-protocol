@@ -138,9 +138,16 @@ Or
 {
   principalPayments {
     borrower
-    amount
+    payer
+    by
     timestamp
+    nextDueDate
     lateFeePaid
+    amount
+    principalDue
+    unbilledPrincipal
+    principalDuePaid
+    unbilledPrincipalPaid
   }
 }
 ```
@@ -155,9 +162,16 @@ Or
     }
   ) {
     borrower
-    amount
+    payer
+    by
     timestamp
+    nextDueDate
     lateFeePaid
+    amount
+    principalDue
+    unbilledPrincipal
+    principalDuePaid
+    unbilledPrincipalPaid
   }
 }
 ```
@@ -170,9 +184,16 @@ Or
     orderDirection: desc
   ) {
     borrower
-    amount
+    payer
+    by
     timestamp
+    nextDueDate
     lateFeePaid
+    amount
+    principalDue
+    unbilledPrincipal
+    principalDuePaid
+    unbilledPrincipalPaid
   }
 }
 ```
