@@ -27,7 +27,7 @@ dataSources:
       file: ./src/mappings/deposited.ts
 
   - kind: ethereum
-    name: seniorPool
+    name: seniorTranche
     network: celo
     source:
       address: "0xc21a5485021C904Ed00b22BF774435a5B33c69bc"
