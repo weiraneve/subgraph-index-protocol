@@ -3,7 +3,7 @@ import {
     DrawdownMade as DrawdownMadeEvent
 } from "../../generated/drawdown/drawdown"
 import { Drawdown, TotalDrawdown } from "../../generated/schema"
-import { TOTAL_DRAWDOWN } from '../utils/constants'
+import { TOTAL_DRAWDOWN_AMOUNT } from '../utils/constants'
 
 export function handleIndexDrawdownMade(event: DrawdownMadeEvent): void {
     let drawdownId = event.transaction.hash.toHexString() + "-" + event.logIndex.toString()
@@ -16,9 +16,9 @@ export function handleIndexDrawdownMade(event: DrawdownMadeEvent): void {
     drawdown.transactionHash = event.transaction.hash
     drawdown.save()
 
-    let total = TotalDrawdown.load(TOTAL_DRAWDOWN)
+    let total = TotalDrawdown.load(TOTAL_DRAWDOWN_AMOUNT)
     if (total == null) {
-        total = new TotalDrawdown(TOTAL_DRAWDOWN)
+        total = new TotalDrawdown(TOTAL_DRAWDOWN_AMOUNT)
         total.totalAmount = BigInt.fromI32(0)
     }
 
