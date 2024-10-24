@@ -20,8 +20,8 @@
 {
   deposits(
     where: {
-      timestamp_gte: "1704038400"  # start 2024-01-01
-      timestamp_lte: "1727712000"  # end   2024-10-01
+      timestamp_gte: "1704038400"  # 2024-01-01
+      timestamp_lte: "1727712000"  # 2024-10-01
     }
   ) {
     lender
@@ -71,5 +71,60 @@ Or
         id
         totalAmount
     }
+}
+```
+
+## Index DrawdownMade event
+
+### drawdown records
+
+#### each record includes borrower address, amount and timestamp
+``` graphql
+{
+  drawdowns {
+    borrower
+    amount
+    timestamp
+  }
+}
+```
+
+#### filter by timestamp
+``` graphql
+{
+  drawdowns(
+    where: {
+      timestamp_gte: "1704038400"  # 2024-01-01
+      timestamp_lte: "1727712000"  # 2024-10-01
+    }
+  ) {
+    borrower
+    amount
+    timestamp
+  }
+}
+```
+
+#### order by timestamp
+``` graphql
+{
+  drawdowns(
+    orderBy: timestamp
+    orderDirection: desc
+  ) {
+    borrower
+    amount
+    timestamp
+  }
+}
+```
+
+### total number of amount
+``` graphql
+{
+  totalDrawdowns {
+    id
+    totalAmount
+  }
 }
 ```
