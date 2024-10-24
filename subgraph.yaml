@@ -9,7 +9,7 @@ dataSources:
     network: celo
     source:
       address: "0xaB5Ee8465c8C8d51e2cCc7d52AC53c19AF201Fa4"
-      abi: deposited
+      abi: deposit
       startBlock: 24782120
     mapping:
       kind: ethereum/events
@@ -19,19 +19,19 @@ dataSources:
         - Deposit
         - TotalDeposit
       abis:
-        - name: deposited
-          file: ./abis/deposited.json
+        - name: deposit
+          file: ./abis/deposit.json
       eventHandlers:
         - event: LiquidityDeposited(indexed address,uint256,uint256)
           handler: handleJuniorLiquidityDeposited
-      file: ./src/mappings/deposited.ts
+      file: ./src/mappings/deposit.ts
 
   - kind: ethereum
     name: seniorDepositRecords
     network: celo
     source:
       address: "0xc21a5485021C904Ed00b22BF774435a5B33c69bc"
-      abi: deposited
+      abi: deposit
       startBlock: 24782120
     mapping:
       kind: ethereum/events
@@ -41,12 +41,12 @@ dataSources:
         - Deposit
         - TotalDeposit
       abis:
-        - name: deposited
-          file: ./abis/deposited.json
+        - name: deposit
+          file: ./abis/deposit.json
       eventHandlers:
         - event: LiquidityDeposited(indexed address,uint256,uint256)
           handler: handleSeniorLiquidityDeposited
-      file: ./src/mappings/deposited.ts
+      file: ./src/mappings/deposit.ts
 
   - kind: ethereum
     name: drawdown

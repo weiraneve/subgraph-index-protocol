@@ -1,6 +1,6 @@
 import {
   LiquidityDeposited as LiquidityDepositedEvent,
-} from "../../generated/juniorTranche/deposited"
+} from "../../generated/juniorDepositRecords/deposited"
 import {
   Deposit,
   TotalDeposit
