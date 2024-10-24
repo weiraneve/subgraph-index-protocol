@@ -11,6 +11,10 @@
     "drawdown": {
       "address": "0x39EaCecFAE2A174Dacd10D10BBD09a6DD2541C18",
       "startBlock": 24782120
+    },
+    "payment": {
+      "address": "0x39EaCecFAE2A174Dacd10D10BBD09a6DD2541C18",
+      "startBlock": 24782120
     }
   }
 }
