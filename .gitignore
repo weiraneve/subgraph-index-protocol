@@ -5,6 +5,10 @@ generated/
 # Dependency directories
 node_modules/
 jspm_packages/
+tests/.bin/
+tests/.docker/
+tests/.latest.json
+generated/
 
 # Logs
 logs
