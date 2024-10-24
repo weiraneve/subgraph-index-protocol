@@ -1,0 +1,92 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: deposited
+    network: celo
+    source:
+      address: "0xaB5Ee8465c8C8d51e2cCc7d52AC53c19AF201Fa4"
+      abi: deposited
+      startBlock: 24782120
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AdminChanged
+        - Approval
+        - BeaconUpgraded
+        - EpochProcessed
+        - Initialized
+        - LenderAdded
+        - LenderFundDisbursed
+        - LenderFundWithdrawn
+        - LenderRemoved
+        - LiquidityDeposited
+        - PoolConfigCacheUpdated
+        - PoolConfigChanged
+        - RedemptionRequestAdded
+        - RedemptionRequestRemoved
+        - ReinvestYieldConfigSet
+        - RoleAdminChanged
+        - RoleGranted
+        - RoleRevoked
+        - Transfer
+        - Upgraded
+        - YieldPaidOut
+        - YieldPayoutFailed
+        - YieldReinvested
+      abis:
+        - name: deposited
+          file: ./abis/deposited.json
+      eventHandlers:
+        - event: AdminChanged(address,address)
+          handler: handleAdminChanged
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: BeaconUpgraded(indexed address)
+          handler: handleBeaconUpgraded
+        - event: EpochProcessed(indexed uint256,uint256,uint256,uint256)
+          handler: handleEpochProcessed
+        - event: Initialized(uint8)
+          handler: handleInitialized
+        - event: LenderAdded(indexed address,bool)
+          handler: handleLenderAdded
+        - event: LenderFundDisbursed(indexed address,uint256)
+          handler: handleLenderFundDisbursed
+        - event: LenderFundWithdrawn(indexed address,uint256,uint256)
+          handler: handleLenderFundWithdrawn
+        - event: LenderRemoved(indexed address)
+          handler: handleLenderRemoved
+        - event: LiquidityDeposited(indexed address,uint256,uint256)
+          handler: handleLiquidityDeposited
+        - event: PoolConfigCacheUpdated(indexed address)
+          handler: handlePoolConfigCacheUpdated
+        - event: PoolConfigChanged(indexed address,indexed address)
+          handler: handlePoolConfigChanged
+        - event: RedemptionRequestAdded(indexed address,uint256,uint256)
+          handler: handleRedemptionRequestAdded
+        - event: RedemptionRequestRemoved(indexed address,uint256,uint256)
+          handler: handleRedemptionRequestRemoved
+        - event: ReinvestYieldConfigSet(indexed address,bool,address)
+          handler: handleReinvestYieldConfigSet
+        - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
+          handler: handleRoleAdminChanged
+        - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleGranted
+        - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleRevoked
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Upgraded(indexed address)
+          handler: handleUpgraded
+        - event: YieldPaidOut(indexed address,uint256,uint256)
+          handler: handleYieldPaidOut
+        - event: YieldPayoutFailed(indexed address,uint256,uint256,string)
+          handler: handleYieldPayoutFailed
+        - event: YieldReinvested(indexed address,uint256)
+          handler: handleYieldReinvested
+      file: ./src/deposited.ts
