@@ -64,7 +64,7 @@ dataSources:
         - TotalDrawdown
       abis:
         - name: drawdown
-          file: ./abis/drawdown.json
+          file: ./abis/credit.json
       eventHandlers:
         - event: DrawdownMade(indexed address,uint256,uint256)
           handler: handleIndexDrawdownMade
