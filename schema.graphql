@@ -48,3 +48,33 @@ type DrawdownMade @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
+
+type PrincipalPayment @entity {
+  id: ID!
+  borrower: Bytes!
+  amount: BigInt!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+}
+
+type TotalPrincipalPayment @entity {
+  id: ID!
+  totalAmount: BigInt!
+}
+
+type PrincipalPaymentMade @entity(immutable: true) {
+  id: Bytes!
+  borrower: Bytes! # address
+  payer: Bytes! # address
+  amount: BigInt! # uint256
+  nextDueDate: BigInt! # uint256
+  principalDue: BigInt! # uint256
+  unbilledPrincipal: BigInt! # uint256
+  principalDuePaid: BigInt! # uint256
+  unbilledPrincipalPaid: BigInt! # uint256
+  by: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
