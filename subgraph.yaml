@@ -47,3 +47,25 @@ dataSources:
         - event: LiquidityDeposited(indexed address,uint256,uint256)
           handler: handleSeniorLiquidityDeposited
       file: ./src/mappings/deposited.ts
+
+  - kind: ethereum
+    name: drawdown
+    network: celo
+    source:
+      address: "0x39EaCecFAE2A174Dacd10D10BBD09a6DD2541C18"
+      abi: drawdown
+      startBlock: 24782120
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Drawdown
+        - TotalDrawdown
+      abis:
+        - name: drawdown
+          file: ./abis/drawdown.json
+      eventHandlers:
+        - event: DrawdownMade(indexed address,uint256,uint256)
+          handler: handleIndexDrawdownMade
+      file: ./src/mappings/drawdown.ts

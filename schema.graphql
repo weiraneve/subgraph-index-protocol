@@ -24,3 +24,28 @@ type LiquidityDeposited @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
+
+type Drawdown @entity {
+  id: ID!
+  borrower: Bytes!
+  amount: BigInt!
+  shares: BigInt!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+}
+
+type TotalDrawdown @entity {
+  id: ID!
+  totalAmount: BigInt!
+}
+
+type DrawdownMade @entity(immutable: true) {
+  id: Bytes!
+  borrower: Bytes! # address
+  borrowAmount: BigInt! # uint256
+  netAmountToBorrower: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
