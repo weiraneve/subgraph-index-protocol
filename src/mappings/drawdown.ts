@@ -6,17 +6,36 @@ import { Drawdown, TotalDrawdown } from "../../generated/schema"
 import { TOTAL_DRAWDOWN_AMOUNT } from '../utils/constants'
 
 export function handleIndexDrawdownMade(event: DrawdownMadeEvent): void {
-    let drawdownId = event.transaction.hash.toHexString() + "-" + event.logIndex.toString()
+    const drawdownId = generateDrawdownId(event)
+    let drawdown = Drawdown.load(drawdownId)
 
-    let drawdown = new Drawdown(drawdownId)
+    if (drawdown == null) {
+        drawdown = new Drawdown(drawdownId)
+    }
+
+    drawdown = updateDrawdownEntity(drawdown, event)
+    drawdown.save()
+
+    updateTotalDrawdown(event)
+}
+
+function generateDrawdownId(event: DrawdownMadeEvent): string {
+    return event.transaction.hash.toHexString() + "-" + event.logIndex.toString()
+}
+
+function updateDrawdownEntity(drawdown: Drawdown, event: DrawdownMadeEvent): Drawdown {
     drawdown.borrower = event.params.borrower
     drawdown.amount = event.params.borrowAmount
     drawdown.timestamp = event.block.timestamp
     drawdown.blockNumber = event.block.number
     drawdown.transactionHash = event.transaction.hash
-    drawdown.save()
 
+    return drawdown
+}
+
+function updateTotalDrawdown(event: DrawdownMadeEvent): void {
     let total = TotalDrawdown.load(TOTAL_DRAWDOWN_AMOUNT)
+
     if (total == null) {
         total = new TotalDrawdown(TOTAL_DRAWDOWN_AMOUNT)
         total.totalAmount = BigInt.fromI32(0)
