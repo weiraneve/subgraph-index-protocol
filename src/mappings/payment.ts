@@ -5,7 +5,6 @@ import {
 import { PrincipalPayment, TotalPrincipalPayment } from "../../generated/schema"
 
 const TOTAL_PAYMENT_AMOUNT = "total payment amount"
-
 const SECONDS_PER_DAY = BigInt.fromI32(86400)
 const DAILY_PENALTY_PERCENTAGE = BigInt.fromI32(1)
 
@@ -58,7 +57,7 @@ function calculateLateFeePaid(event: PrincipalPaymentMadeEvent): BigInt {
         let unpaidPrincipal = event.params.principalDue.minus(event.params.principalDuePaid)
 
         if (unpaidPrincipal.gt(BigInt.fromI32(0))) {
-            // 计算方式：未支付金额 * 天数 * 日利率百分比 * 1%
+            // 计算方式：未支付金额 * 天数 * 日利率百分比(1%)
             lateFeePaid = unpaidPrincipal
                 .times(lateDays)
                 .times(DAILY_PENALTY_PERCENTAGE)
