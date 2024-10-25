@@ -1,5 +1,7 @@
 # subgraph-index-protocol
 
+[subgraph部署网址](https://api.studio.thegraph.com/query/92433/subgraph-index-protocol/version/latest)
+
 ## Index LiquidityDeposited event
 
 ### deposit records
