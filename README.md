@@ -51,26 +51,7 @@
   totalDeposits {
     id
     totalAmount
-    poolType
   }
-}
-```
-Or
-``` graphql
-{
-  juniorTotal: totalDeposits(
-    where: { poolType: "junior" }
-  ) {
-        id
-        totalAmount
-    }
-
-  seniorTotal: totalDeposits(
-    where: { poolType: "senior" }
-  ) {
-        id
-        totalAmount
-    }
 }
 ```
 

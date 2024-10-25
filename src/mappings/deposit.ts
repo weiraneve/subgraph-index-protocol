@@ -7,18 +7,9 @@ import {
   TotalDeposit
 } from "../../generated/schema"
 
-const JUNIOR_TRANCHE = "junior"
-const SENIOR_TRANCHE = "senior"
+const TOTAL_DEPOSIT_AMOUNT = "total deposit amount"
 
-export function handleJuniorLiquidityDeposited(event: LiquidityDepositedEvent): void {
-  handleLiquidityDeposited(event, JUNIOR_TRANCHE)
-}
-
-export function handleSeniorLiquidityDeposited(event: LiquidityDepositedEvent): void {
-  handleLiquidityDeposited(event, SENIOR_TRANCHE)
-}
-
-function handleLiquidityDeposited(event: LiquidityDepositedEvent, poolType: string): void {
+export function handleIndexLiquidityDeposited(event: LiquidityDepositedEvent): void {
   const depositId = generateDepositId(event)
   let deposit = Deposit.load(depositId)
 
@@ -26,35 +17,32 @@ function handleLiquidityDeposited(event: LiquidityDepositedEvent, poolType: stri
     deposit = new Deposit(depositId)
   }
 
-  deposit = updateDepositEntity(deposit, event, poolType)
+  deposit = updateDepositEntity(deposit, event)
   deposit.save()
 
-  updateTotalDeposit(event, poolType)
+  updateTotalDeposit(event)
 }
 
 function generateDepositId(event: LiquidityDepositedEvent): string {
   return event.transaction.hash.toHexString() + "-" + event.logIndex.toString()
 }
 
-function updateDepositEntity(deposit: Deposit, event: LiquidityDepositedEvent, poolType: string): Deposit {
+function updateDepositEntity(deposit: Deposit, event: LiquidityDepositedEvent): Deposit {
   deposit.lender = event.params.sender
   deposit.amount = event.params.assets
   deposit.shares = event.params.shares
   deposit.timestamp = event.block.timestamp
-  deposit.poolType = poolType
   deposit.blockNumber = event.block.number
   deposit.transactionHash = event.transaction.hash
-
   return deposit
 }
 
-function updateTotalDeposit(event: LiquidityDepositedEvent, poolType: string): void {
-  let total = TotalDeposit.load(poolType)
+function updateTotalDeposit(event: LiquidityDepositedEvent): void {
+  let total = TotalDeposit.load(TOTAL_DEPOSIT_AMOUNT)
 
   if (total == null) {
-    total = new TotalDeposit(poolType)
+    total = new TotalDeposit(TOTAL_DEPOSIT_AMOUNT)
     total.totalAmount = BigInt.fromI32(0)
-    total.poolType = poolType
   }
 
   total.totalAmount = total.totalAmount.plus(event.params.assets)

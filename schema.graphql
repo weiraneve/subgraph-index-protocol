@@ -4,7 +4,6 @@ type Deposit @entity {
   amount: BigInt!
   shares: BigInt!
   timestamp: BigInt!
-  poolType: String!
   blockNumber: BigInt!
   transactionHash: Bytes!
 }
@@ -12,7 +11,6 @@ type Deposit @entity {
 type TotalDeposit @entity {
   id: ID!
   totalAmount: BigInt!
-  poolType: String!
 }
 
 type LiquidityDeposited @entity(immutable: true) {

@@ -23,7 +23,7 @@ dataSources:
           file: ./abis/deposit.json
       eventHandlers:
         - event: LiquidityDeposited(indexed address,uint256,uint256)
-          handler: handleJuniorLiquidityDeposited
+          handler: handleIndexLiquidityDeposited
       file: ./src/mappings/deposit.ts
 
   - kind: ethereum
@@ -45,7 +45,7 @@ dataSources:
           file: ./abis/deposit.json
       eventHandlers:
         - event: LiquidityDeposited(indexed address,uint256,uint256)
-          handler: handleSeniorLiquidityDeposited
+          handler: handleLiquidityDeposited
       file: ./src/mappings/deposit.ts
 
   - kind: ethereum
