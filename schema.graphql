@@ -55,13 +55,11 @@ type PrincipalPayment @entity {
   timestamp: BigInt!
   blockNumber: BigInt!
   transactionHash: Bytes!
-  payer: Bytes! # address
   nextDueDate: BigInt! # uint256
   principalDue: BigInt! # uint256
   unbilledPrincipal: BigInt! # uint256
   principalDuePaid: BigInt! # uint256
   unbilledPrincipalPaid: BigInt! # uint256
-  by: Bytes! # address
 }
 
 type TotalPrincipalPayment @entity {

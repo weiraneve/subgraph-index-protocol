@@ -119,8 +119,6 @@
 {
   principalPayments {
     borrower
-    payer
-    by
     timestamp
     nextDueDate
     lateFeePaid
@@ -143,8 +141,6 @@
     }
   ) {
     borrower
-    payer
-    by
     timestamp
     nextDueDate
     lateFeePaid
@@ -165,8 +161,6 @@
     orderDirection: desc
   ) {
     borrower
-    payer
-    by
     timestamp
     nextDueDate
     lateFeePaid
